@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>我是iframe父页面</p>
+    <button onclick="addIframe('childA', './iframeChildA.html')">去子应用A</button>
+    <button onclick="addIframe('childB', './iframeChildB.html')">去子应用B</button>
+    <script>
+        function destroyIframe(iframeID){ 
+            var elements = document.getElementsByTagName("iframe");
+            while (elements.length) {
+                elements[0].parentNode.removeChild(elements[0]);
+            }
+
+        }
+        function addIframe(viewId, path) {
+            destroyIframe();
+            const iframe = document.createElement('iframe');
+            iframe.src = path;
+            iframe.setAttribute('id', viewId);
+            document.body.appendChild(iframe);
+        };
+    </script>
+</body>
+</html>
